@@ -17,7 +17,7 @@ module.exports = {
             try {
                 const response = await axios.get(`https://kazumaoff-peachwings.replit.app/api/gpt?query=${encodeURIComponent(question)}`);
                 const aiResponse = response.data.result;
-                box.send(aiResponse);
+                box.reply(aiResponse);
             } catch (error) {
                 console.error("Error fetching AI response:", error);
                 box.reply("Failed to get AI response. Please try again later.");
