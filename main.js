@@ -15,7 +15,7 @@ const chalk = require("chalk");
 const login = require("fca-unofficial");
 //@Jenica: you can replace the fca with your fca
 
-const PREFIX = "/";
+const PREFIX = ">";
 //@Jenica: you can replace the prefix.
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");
@@ -38,17 +38,17 @@ function loadCommand(file) {
     const command = require(path.join(commandPath, file));
     if (!command.config) {
       throw new Error(
-        `Command ${commandName} does not have a config property, please set it properly!!!!`,
+        `Command ${commandName} does not have a config property, please set it properly!`,
       );
     }
     if (!command.config.name) {
       throw new Error(
-        `Command ${commandName} does not have a name property, in other words.. the command name is missing, please set it properly!!!`,
+        `Command ${commandName} does not have a name property, in other words.. the command name is missing, please set it properly!`,
       );
     }
     if (!command.config.description) {
       throw new Error(
-        `Command ${commandName} does not have a valid description! please set it properly!!!`,
+        `Command ${commandName} does not have a valid description! please set it properly!`,
       );
     }
     if (!command.run && !command.onCommand && !command.onStart) {
@@ -107,8 +107,7 @@ function initializeBot(api, event) {
   try {
     //@Jenica: this is the code that triggers when someone types "prefix"
     if (event.body && event.body.toLowerCase() === "prefix") {
-      box.reply(`Please edit this prefix message, this message shows when any user enters "prefix", to include the prefix in the message output, add \${PREFIX} without any "\\".
-- Nicaa: Chatbot Template`);
+      box.reply(`hey looking for me? this is my prefix ( > )`);
     } else if (event.body && event.body.toLowerCase().startsWith(PREFIX)) {
       //@Jenica: this is the code that triggers if the message from user starts with a prefix, please find the "handleCommand" function if you want to edit it.
       handleCommand(api, event, box);
@@ -144,7 +143,7 @@ function handleCommand(api, event, box) {
       !adminList.some((admin) => admin.id === event.senderID)
     ) {
       box.reply(
-        `Insert message here if the user is not admin, still u can use \${command} for command name but write it without any "\\"`,
+        `you don't have permission to use this command, only pogi lang.`,
       );
 
       //@Jenica: you can add if statements here that can interrupt the execution command
@@ -156,8 +155,7 @@ function handleCommand(api, event, box) {
     //@Jenica: runs the command with the api, event, args and box object bein passed in! basically it activates the function inside the commands in scripts/commands folder.
   } else {
     //@Jenica: if the command is not found, it will reply with this message! please edit it
-    box.reply(`Insert message here for invalid command, you need to edit it, if you want to include the command name, just use \${command} without any "\\"
-- Nicaa: Chatbot Template`);
+    box.reply(`Command not found try ( >kazuma )`);
   }
 }
 //@Jenica: UwU
