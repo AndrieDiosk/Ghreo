@@ -4,9 +4,9 @@ const axios = require("axios");
 
 module.exports = {
     config: {
-        name: "ai",
-        description: "Interact with an AI to get responses to your questions.",
-        usage: ":ai <question>"
+        name: "kazuma",
+        description: "Interact with an kazuma AI to get responses to your questions.",
+        usage: "kazuma <question>"
 
     }, 
 
@@ -15,15 +15,15 @@ module.exports = {
 
         if (question) {
             try {
-                const response = await axios.get(`https://hercai.onrender.com/v2/hercai?question=${encodeURIComponent(question)}`);
-                const aiResponse = response.data.reply;
+                const response = await axios.get(`https://kazumaoff-peachwings.replit.app/api/gpt?query=${encodeURIComponent(question)}`);
+                const aiResponse = response.data.result;
                 box.send(aiResponse);
             } catch (error) {
                 console.error("Error fetching AI response:", error);
                 box.reply("Failed to get AI response. Please try again later.");
             }
         } else {
-            box.reply("Please provide a question after the command. For example: `:ai Hello`");
+            box.reply("Please provide a question after the command. For example: `>kazuma what is life`");
         }
     }
 };
